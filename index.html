@@ -37,8 +37,8 @@
         <script src="data/PunggolPunggol_School_3.js"></script>
         <script>
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[1.375989306842856,103.87601824965418],[1.4254872209456255,103.93571976347665]]);
+            zoomControl:true, maxZoom:18, minZoom:14
+        })
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -56,6 +56,9 @@
         .className += ' fas fa-ruler';
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
         }
         map.createPane('pane_OpenStreetMap_0');
         map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
@@ -63,8 +66,8 @@
             pane: 'pane_OpenStreetMap_0',
             opacity: 1.0,
             attribution: '',
-            minZoom: 1,
-            maxZoom: 28,
+            minZoom: 14,
+            maxZoom: 18,
             minNativeZoom: 0,
             maxNativeZoom: 19
         });
